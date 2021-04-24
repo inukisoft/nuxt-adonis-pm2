@@ -49,5 +49,8 @@ export default {
 
   router: {
     base: '/web/'
-  }  
+  },
+  server: {
+    host: '0' // default: localhost
+  }
 }
