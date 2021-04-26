@@ -11,8 +11,9 @@ module.exports = {
 
     deploy : {
         // "production" is the environment name
-        "production" : {
+        "integracion" : {
           "user" : "root",
+          "password": "redhat",
           "host" : ["felis.sii.cl"],
           "ref"  : "origin/master",
           "repo" : "http://cefio.sii.cl/arq/arsii/poc/nuxt-adonis-arsii",
