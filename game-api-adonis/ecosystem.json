@@ -1,5 +1,4 @@
 {
-
   "apps": [
     {
       "name": "ApiAdonisGames",
@@ -7,10 +6,8 @@
       "instances": "2",
       "script": "./build/server.js",
       "args": "start"
-      
     }
   ],
-
   "deploy": {
         "integracion" : {
           "user" : "root",
