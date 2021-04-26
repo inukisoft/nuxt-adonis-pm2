@@ -20,7 +20,7 @@ module.exports = {
           "ssh_options": "StrictHostKeyChecking=no",
           "pre-setup" : "ls -lart",
           "pre-deploy-local" : "echo 'This is a local executed command'",
-          "post-deploy" : "cd games-nuxt-tailwindcss && npm i && npm run build && sudo pm2 startOrRestart ecosystem.config.js --name WEB -i 2 --env integracion"
+          "post-deploy" : "cd games-nuxt-tailwindcss && npm i && npm run build && sudo pm2 start ecosystem.config.js --name WEB -i 2 --env integracion"
          },
       }    
 
