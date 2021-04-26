@@ -2,7 +2,7 @@ module.exports = {
 
   apps: [
     {
-      name: "ApiAdonisGames",
+      name: "API-AdonisGames",
       exec_mode: "cluster",
       instances: "2",
       script: "./build/server.js",
