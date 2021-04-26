@@ -5,7 +5,7 @@
       "name": "ApiAdonisGames",
       "exec_mode": "cluster",
       "instances": "2",
-      "script": "node build/server.js",
+      "script": "./build/server.js",
       "args": "start"
     }
   ],
