@@ -13,11 +13,13 @@ module.exports = {
         // "production" is the environment name
         "integracion" : {
           "user" : "root",
-          "password": "redhat",
           "host" : ["felis.sii.cl"],
           "ref"  : "origin/master",
-          "repo" : "http://cefio.sii.cl/arq/arsii/poc/nuxt-adonis-arsii",
+          "repo" : "http://cefio.sii.cl/arq/arsii/poc/nuxt-adonis-arsii.git",
           "path" : "/APP01/pm2_deploy",
+          "ssh_options": "StrictHostKeyChecking=no",
+          "pre-setup" : "ls -lart",
+          "pre-deploy-local" : "echo 'This is a local executed command'",
           "post-deploy" : "cd games-nuxt-tailwindcss; npm i; npm run build ;"
          },
       }    
