@@ -4,7 +4,7 @@ module.exports = {
         name: 'ApiAdonisGames',
         exec_mode: 'cluster',
         instances: '2', // Or a number of instances
-        script: './node_modules/nuxt/bin/nuxt.js',
+        script: 'node build/server.js',
         args: 'start'
       }
     ],
