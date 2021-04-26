@@ -4,7 +4,7 @@
     {
       "name": "ApiAdonisGames",
       "exec_mode": "cluster",
-      "instances": "2", // Or a number of instances
+      "instances": "2",
       "script": "node build/server.js",
       "args": "start"
     }
@@ -20,7 +20,7 @@
           "ssh_options": "StrictHostKeyChecking=no",
           "pre-setup" : "rm -rf /APP01/pm2_deploy/source ; ls -lart ",
           "pre-deploy-local" : "echo 'This is a local executed command'",
-          "post-deploy" : "cd game-api-adonis ;  ls -lart ; npm i && npm run build && cp .env.integracion ./build &&  sudo pm2 start build/server.js --name API -i 2  --env integracion"
+          "post-deploy" : "cd game-api-adonis ;  ls -lart ; npm i && npm run build && cp .env.integracion ./build &&  sudo pm2 startOrRestart ecosystem.json --env integracion"
          }
        
   }  
