@@ -1,4 +1,15 @@
 {
+
+  "apps": [
+    {
+      "name": "ApiAdonisGames",
+      "exec_mode": "cluster",
+      "instances": "2", // Or a number of instances
+      "script": "node build/server.js",
+      "args": "start"
+    }
+  ],
+
   "deploy": {
         "integracion" : {
           "user" : "root",
