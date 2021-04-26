@@ -20,7 +20,7 @@ module.exports = {
           "ssh_options": "StrictHostKeyChecking=no",
           "pre-setup" : "ls -lart",
           "pre-deploy-local" : "echo 'This is a local executed command'",
-          "post-deploy" : "cd game-api-adonis ;  ls -lart; npm i && npm run build && cp .env.integracion ./build && sudo pm2 startOrRestart ecosystem.config.js --name API -i 2 --env integracion"
+          "post-deploy" : "cd game-api-adonis ;  ls -lart ; npm i && npm run build && cp .env.integracion ./build && sudo pm2 startOrRestart ecosystem.config.js --name API -i 2 --env integracion"
          },
       }    
 
