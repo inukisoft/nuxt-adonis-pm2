@@ -143,7 +143,7 @@ pipeline {
         script {
             
           withCredentials([sshUserPrivateKey(credentialsId: "ssh-felis-credencial", keyFileVariable: 'keyfile')]) {
-            sh 'apk add openssh'
+            sh 'sudo apk add openssh'
             sh 'eval `ssh-agent -s` '
             sh 'ssh-add -i '
             ui.each {                
@@ -170,7 +170,7 @@ pipeline {
         script {
             
           withCredentials([sshUserPrivateKey(credentialsId: "ssh-felis-credencial", keyFileVariable: 'keyfile')]) {
-            sh 'apk add openssh'
+            sh 'sudo apk add openssh'
             sh 'eval `ssh-agent -s` '
             sh 'ssh-add -i '
             ms.each {                
