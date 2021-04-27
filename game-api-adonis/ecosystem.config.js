@@ -5,7 +5,7 @@ module.exports = {
       name: "API-AdonisGames",
       exec_mode: "cluster",
       instances: "2",
-      script: "build/server.js"
+      script: "build/server.js start"
     }
   ],
   deploy: {
