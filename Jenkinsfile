@@ -134,7 +134,7 @@ pipeline {
     stage('Deploy Frontend - Integracion') {
       agent {
           docker {
-              image 'keymetrics/pm2:latest-alpine'
+              image 'sii-node-pm2:latest'
           }
       }
       when { expression { return params.STAGE == "integracion" } }
