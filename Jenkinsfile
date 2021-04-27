@@ -134,7 +134,7 @@ pipeline {
     stage('Deploy Frontend - Integracion') {
       agent {
           docker {
-              image 'sii-node-pm2:latest'
+              image 'inukisoft/sii-node-pm2:latest'
           }
       }
       when { expression { return params.STAGE == "integracion" } }
@@ -165,7 +165,7 @@ pipeline {
     stage('Deploy Backend - Integracion') {
       agent {
           docker {
-              image 'sii-node-pm2:latest'
+              image 'inukisoft/sii-node-pm2:latest'
           }
       }
       when { expression { return params.STAGE == "integracion" } }
