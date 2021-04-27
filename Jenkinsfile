@@ -143,7 +143,12 @@ pipeline {
         script {
             
           withCredentials([sshUserPrivateKey(credentialsId: "ssh-felis-credencial", keyFileVariable: 'keyfile')]) {
-            sh 'sudo apk add openssh'
+            sh 'npm_config_cache=npm-cache'
+            sh 'HOME=.'
+            // cache sobre nexus
+            sh 'npm config set registry http://apus.sii.cl:8081/repository/npm-sii-group/'
+                          
+            sh 'apk add openssh'
             sh 'eval `ssh-agent -s` '
             sh 'ssh-add -i '
             ui.each {                
