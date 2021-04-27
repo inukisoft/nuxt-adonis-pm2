@@ -77,7 +77,7 @@ pipeline {
     stage('Build Frontend SSR') {
       agent {
           docker {
-              image 'node:14'
+              image 'keymetrics/pm2:latest-alpine'
           }
       }
       steps {
@@ -104,7 +104,7 @@ pipeline {
     stage('Build Backend MS') {
       agent {
           docker {
-              image 'keymetrics/pm2:14-alpine'
+              image 'keymetrics/pm2:latest-alpine'
           }
       }
       steps {
@@ -134,7 +134,7 @@ pipeline {
     stage('Deploy Frontend - Integracion') {
       agent {
           docker {
-              image 'keymetrics/pm2:14-alpine'
+              image 'keymetrics/pm2:latest-alpine'
           }
       }
       when { expression { return params.STAGE == "integracion" } }
@@ -160,7 +160,7 @@ pipeline {
     stage('Deploy Backend - Integracion') {
       agent {
           docker {
-              image 'keymetrics/pm2:14-alpine'
+              image 'keymetrics/pm2:latest-alpine'
           }
       }
       when { expression { return params.STAGE == "integracion" } }
