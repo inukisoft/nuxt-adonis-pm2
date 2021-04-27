@@ -143,18 +143,17 @@ pipeline {
         script {
             
           withCredentials([sshUserPrivateKey(credentialsId: "ssh-felis-credencial", keyFileVariable: 'keyfile')]) {
+
             sh 'npm_config_cache=npm-cache'
             sh 'HOME=.'
             // cache sobre nexus
             sh 'npm config set registry http://apus.sii.cl:8081/repository/npm-sii-group/'
                           
-            sh "eval `ssh-agent -s` && ssh-add  ${keyfile}"
-            sh "ssh-add -i ${keyfile}"
             ui.each {                
                 dir(path: "${it}") {
                     
-                    sh 'pm2 deploy ecosystem.config.js integracion setup'
-                    sh 'pm2 deploy ecosystem.config.js integracion --force'
+                    sh 'eval `ssh-agent -s` && ssh-add  ${keyfile} && pm2 deploy ecosystem.config.js integracion setup'
+                    sh 'eval `ssh-agent -s` && ssh-add  ${keyfile} && pm2 deploy ecosystem.config.js integracion --force'
                 } 
             }
           }
@@ -180,14 +179,11 @@ pipeline {
             // cache sobre nexus
             sh 'npm config set registry http://apus.sii.cl:8081/repository/npm-sii-group/'
                           
-            sh "eval `ssh-agent -s` && ssh-add  ${keyfile}"
-            sh "ssh-add -i ${keyfile}"
-
             ms.each {                
                 dir(path: "${it}") {
                     
-                    sh 'pm2 deploy ecosystem.config.js integracion setup'
-                    sh 'pm2 deploy ecosystem.config.js integracion --force'
+                    sh 'eval `ssh-agent -s` && ssh-add  ${keyfile} && pm2 deploy ecosystem.config.js integracion setup'
+                    sh 'eval `ssh-agent -s` && ssh-add  ${keyfile} && pm2 deploy ecosystem.config.js integracion --force'
                 } 
             }
           }
