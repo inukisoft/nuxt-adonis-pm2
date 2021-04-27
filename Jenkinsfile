@@ -148,7 +148,6 @@ pipeline {
             // cache sobre nexus
             sh 'npm config set registry http://apus.sii.cl:8081/repository/npm-sii-group/'
                           
-            sh 'apk add openssh'
             sh 'eval `ssh-agent -s` '
             sh 'ssh-add -i '
             ui.each {                
@@ -166,7 +165,7 @@ pipeline {
     stage('Deploy Backend - Integracion') {
       agent {
           docker {
-              image 'keymetrics/pm2:latest-alpine'
+              image 'sii-node-pm2:latest'
           }
       }
       when { expression { return params.STAGE == "integracion" } }
@@ -175,7 +174,6 @@ pipeline {
         script {
             
           withCredentials([sshUserPrivateKey(credentialsId: "ssh-felis-credencial", keyFileVariable: 'keyfile')]) {
-            sh 'sudo apk add openssh'
             sh 'eval `ssh-agent -s` '
             sh 'ssh-add -i '
             ms.each {                
