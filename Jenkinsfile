@@ -152,8 +152,8 @@ pipeline {
             ui.each {                
                 dir(path: "${it}") {
                     
-                    sh 'eval `ssh-agent -s` && ssh-add  ${keyfile} && pm2 deploy ecosystem.config.js integracion setup'
-                    sh 'eval `ssh-agent -s` && ssh-add  ${keyfile} && pm2 deploy ecosystem.config.js integracion --force'
+                    sh "eval `ssh-agent -s` && ssh-add  ${keyfile} && pm2 deploy ecosystem.config.js integracion setup"
+                    sh "eval `ssh-agent -s` && ssh-add  ${keyfile} && pm2 deploy ecosystem.config.js integracion --force"
                 } 
             }
           }
@@ -182,8 +182,8 @@ pipeline {
             ms.each {                
                 dir(path: "${it}") {
                     
-                    sh 'eval `ssh-agent -s` && ssh-add  ${keyfile} && pm2 deploy ecosystem.config.js integracion setup'
-                    sh 'eval `ssh-agent -s` && ssh-add  ${keyfile} && pm2 deploy ecosystem.config.js integracion --force'
+                    sh "eval `ssh-agent -s` && ssh-add  ${keyfile} && pm2 deploy ecosystem.config.js integracion setup"
+                    sh "eval `ssh-agent -s` && ssh-add  ${keyfile} && pm2 deploy ecosystem.config.js integracion --force"
                 } 
             }
           }
