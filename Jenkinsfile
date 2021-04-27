@@ -148,8 +148,8 @@ pipeline {
             // cache sobre nexus
             sh 'npm config set registry http://apus.sii.cl:8081/repository/npm-sii-group/'
                           
-            sh 'eval `ssh-agent -s` '
-            sh 'ssh-add -i '
+            sh "eval `ssh-agent -s` && ssh-add -i ${keyfile}"
+            sh "ssh-add -i ${keyfile}"
             ui.each {                
                 dir(path: "${it}") {
                     
