@@ -77,7 +77,7 @@ pipeline {
     stage('Build Frontend SSR') {
       agent {
           docker {
-              image 'keymetrics/pm2:latest-alpine'
+              image 'node:16'
           }
       }
       steps {
@@ -104,7 +104,7 @@ pipeline {
     stage('Build Backend MS') {
       agent {
           docker {
-              image 'keymetrics/pm2:latest-alpine'
+              image 'node:16'
           }
       }
       steps {
