@@ -118,6 +118,7 @@ pipeline {
               // cache sobre nexus
               sh 'npm config set registry http://apus.sii.cl:8081/repository/npm-sii-group/'
               sh "echo \"VUE_APP_GIT_COMMIT=${GIT_COMMIT}\" >> .env"
+              sh 'npm -v'
               sh 'npm install'
               echo "fijando la version frontend a la ${params.VERSION}"
               sh "npm version ${params.VERSION} --allow-same-version"
