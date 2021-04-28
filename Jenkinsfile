@@ -42,7 +42,7 @@ pipeline {
                 name: 'STAGE'
               ),           
               string(
-                defaultValue: '', 
+                defaultValue: '0.0.0-SNAPSHOT', 
                 name: 'VERSION',
                 description: 'Versión? por ejemplo 0.0.1-SNAPSHOT si es integracion o 0.0.1 si es release', 
                 trim: true
@@ -56,7 +56,7 @@ pipeline {
     stage ('Validate Version') {
       steps {
         script {
-[]          // tenemos que validar que la version sea valida y del formato requerido
+          // tenemos que validar que la version sea valida y del formato requerido
           def current_tag = params.VERSION
           def snapshot = current_tag.endsWith("-SNAPSHOT")
           if(!current_tag || current_tag == '' || (params.STAGE == 'integracion' && !snapshot) || (params.STAGE == 'release' && snapshot)){
@@ -80,6 +80,7 @@ pipeline {
               image 'node:16'
           }
       }
+      when { expression { return false } }
       steps {
 
         script {
@@ -107,6 +108,7 @@ pipeline {
               image 'node:16'
           }
       }
+      when { expression { return false } }
       steps {
 
         script {
@@ -131,7 +133,7 @@ pipeline {
 
     // DEPLOY EN INTEGRACION //
 
-    stage('Deploy Frontend - Integracion') {
+    stage('Deploy Integracion') {
       agent {
           docker {
               image 'inukisoft/sii-node-pm2:nueva'
@@ -143,54 +145,15 @@ pipeline {
         script {
             
           withCredentials([sshUserPrivateKey(credentialsId: "ssh-felis-credencial", keyFileVariable: 'keyfile')]) {
-
             sh 'npm_config_cache=npm-cache'
             sh 'HOME=.'
             // cache sobre nexus
-            sh 'npm config set registry http://apus.sii.cl:8081/repository/npm-sii-group/'
-                          
-            ui.each {                
-                dir(path: "${it}") {
-                    
-                    sh "eval `ssh-agent -s` && ssh-add  ${keyfile} && pm2 deploy ecosystem.config.js integracion setup"
-                    sh "eval `ssh-agent -s` && ssh-add  ${keyfile} && pm2 deploy ecosystem.config.js integracion --force"
-                } 
-            }
+            sh 'npm config set registry http://apus.sii.cl:8081/repository/npm-sii-group/'               
+            sh "eval `ssh-agent -s` && ssh-add  ${keyfile} && pm2 deploy ecosystem.config.js integracion setup"
+            sh "eval `ssh-agent -s` && ssh-add  ${keyfile} && pm2 deploy ecosystem.config.js integracion --force"
           }
         } 
       }
     }
-
-    stage('Deploy Backend - Integracion') {
-      agent {
-          docker {
-              image 'inukisoft/sii-node-pm2:nueva'
-          }
-      }
-      when { expression { return params.STAGE == "integracion" } }
-      steps {
-
-        script {
-            
-          withCredentials([sshUserPrivateKey(credentialsId: "ssh-felis-credencial", keyFileVariable: 'keyfile')]) {
-
-            sh 'npm_config_cache=npm-cache'
-            sh 'HOME=.'
-            // cache sobre nexus
-            sh 'npm config set registry http://apus.sii.cl:8081/repository/npm-sii-group/'
-                          
-            ms.each {                
-                dir(path: "${it}") {
-                    
-                    sh "eval `ssh-agent -s` && ssh-add  ${keyfile} && pm2 deploy ecosystem.config.js integracion setup"
-                    sh "eval `ssh-agent -s` && ssh-add  ${keyfile} && pm2 deploy ecosystem.config.js integracion --force"
-                } 
-            }
-          }
-        } 
-      }
-    }
-
   }
-
 }
