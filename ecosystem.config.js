@@ -5,13 +5,13 @@ module.exports = {
       name: "API-AdonisGames",
       exec_mode: "cluster",
       instances: "1",
-      script: "./game-api-adonis/build/server.js"
+      script: "game-api-adonis/build/server.js"
     },
     {
       name: "NuxtGames",
       exec_mode: "cluster",
       instances: "1", 
-      script: "./games-nuxt-tailwindcss/node_modules/nuxt/bin/nuxt.js",
+      script: "games-nuxt-tailwindcss/node_modules/nuxt/bin/nuxt.js",
       args: "start"
     }    
   ],
