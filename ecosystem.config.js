@@ -17,7 +17,7 @@ module.exports = {
   ],
   deploy: {
         "integracion" : {
-          "user" : "root",
+          "user" : "ubuntu",
           "host" : ["localhost"],
           "ref"  : "origin/main",
           "repo" : "https://github.com/inukisoft/nuxt-adonis-pm2.git",
