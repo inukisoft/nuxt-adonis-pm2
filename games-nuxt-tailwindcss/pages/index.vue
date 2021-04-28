@@ -53,7 +53,7 @@
 import axios from 'axios'
 export default {
   async asyncData () {
-    const { data } = await axios.get('/api/games')
+    const { data } = await axios.get('http://localhost:3333/api/games')
     return {
       games: data
     }
