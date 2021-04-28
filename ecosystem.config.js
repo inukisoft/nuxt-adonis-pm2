@@ -3,15 +3,17 @@ module.exports = {
   apps: [
     {
       name: "API-AdonisGames",
+      cwd: "./game-api-adonis",
       exec_mode: "cluster",
       instances: "1",
-      script: "cd game-api-adonis && build/server.js"
+      script: "build/server.js"
     },
     {
       name: "NuxtGames",
+      cwd: "./games-nuxt-tailwindcss",
       exec_mode: "cluster",
       instances: "1", 
-      script: "cd games-nuxt-tailwindcss && node_modules/nuxt/bin/nuxt.js",
+      script: "node_modules/nuxt/bin/nuxt.js",
       args: "start"
     }    
   ],
