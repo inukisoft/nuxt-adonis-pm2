@@ -20,7 +20,7 @@ module.exports =
           "ssh_options": "StrictHostKeyChecking=no",
           "pre-setup" : "rm -rf /APP01/pm2_deploy/source ; ls -lart ",
           "pre-deploy-local" : "echo 'This is a local executed command'",
-          "post-deploy" : "cd games-nuxt-tailwindcss && npm install && npm run build && sudo pm2 startOrRestart ecosystem.config.js --env integracion"
+          "post-deploy" : "cd games-nuxt-tailwindcss && npm install && npm run build && ls -lart && sudo pm2 startOrRestart ecosystem.config.js --env integracion"
          }
       
   }  
