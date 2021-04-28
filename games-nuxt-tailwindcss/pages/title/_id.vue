@@ -67,7 +67,7 @@ export default {
   async asyncData ({ params }) {
     console.log('params.id :' + JSON.stringify(params))
     // TODO: Por qué chucha en los parámetros está el nombre del template dinámico
-    const { data } = await axios.get(`/api/games/${params.id}`)
+    const { data } = await axios.get(`http://localhost:3333/api/games/${params.id}`)
     return {
       game: data
     }
